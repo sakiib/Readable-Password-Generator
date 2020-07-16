@@ -91,7 +91,7 @@ string get_readable_password(int password_length, bool capitalize = false, bool 
     }
     if (capitalize) password[0] = toupper(password[0]);
     if (special_char) password[get_random_number_in_range(1, password_length - 1)] = '*';
-    assert((int)password.size() == password_length);
+    assert(password_length == (int)password.size());
     return password;
 }
 

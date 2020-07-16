@@ -40,6 +40,8 @@ int first_character[26];
 // counts consecutive characters occurrence
 void calculate_count(vector <string> &words) {
     memset(cnt, 0, sizeof(cnt));
+    memset(total_character_after, 0, sizeof(total_character_after));
+    memset(first_character, 0, sizeof(first_character));
     int sz = (int)words.size();
     for (int i = 0; i < sz; i++) {
         string cur_word = words[i];
@@ -69,7 +71,7 @@ int get_current_char(int previous_index) {
     return -1;
 }
 
-//generates the first character using the occurrence of first character count
+//generates the first character using the occurrence of first character
 int get_first_character_index() {
     int total_character_at_first_pos = 0;
     for (int i = 0; i < 26; i++) total_character_at_first_pos += first_character[i];
@@ -109,11 +111,14 @@ int main() {
     srand(time(0));
 
     string word;
+    set <string> unique_words;
     vector <string> words;
 
     while (cin >> word) {
-        words.push_back(process_words(word));
+        unique_words.insert(process_words(word));
     }
+
+    for (auto w: unique_words) words.push_back(w);
 
     int password_length = 10;
     cout << "just a random password: " << get_random_password(password_length) << "\n";

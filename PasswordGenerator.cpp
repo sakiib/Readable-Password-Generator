@@ -3,6 +3,7 @@ using namespace std;
 
 std::mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
+// strip off all non alphabetic characters & convert the words to lowercase
 inline string process_words(string word) {
     string processed_word = "";
     int length = (int)word.size();
@@ -15,10 +16,12 @@ inline string process_words(string word) {
     return processed_word;
 }
 
+// generated a random number in given range
 inline int get_random_number_in_range(int from, int to) {
     return rng() % (to - from + 1) + from;
 }
 
+// generated a random password with a given length
 string get_random_password(int password_lenght) {
     string random_password = "";
     for (int i = 0; i < password_lenght; i++) {
@@ -34,6 +37,7 @@ int cnt[26][26];
 int total_character_after[26];
 int first_character[26];
 
+// counts consecutive characters occurrence
 void calculate_count(vector <string> &words) {
     memset(cnt, 0, sizeof(cnt));
     int sz = (int)words.size();
@@ -52,6 +56,8 @@ void calculate_count(vector <string> &words) {
     }
 }
 
+//considering previous character & using the count of characters
+//occurrence after another, generates the next character
 int get_current_char(int previous_index) {
     int tot = total_character_after[previous_index];
     int num = get_random_number_in_range(0, tot);
@@ -63,6 +69,7 @@ int get_current_char(int previous_index) {
     return -1;
 }
 
+//generates the first character using the occurrence of first character count
 int get_first_character_index() {
     int total_character_at_first_pos = 0;
     for (int i = 0; i < 26; i++) total_character_at_first_pos += first_character[i];
@@ -75,6 +82,7 @@ int get_first_character_index() {
     return -1;
 }
 
+//generated a more readable password
 string get_readable_password(int password_length, bool capitalize = false, bool special_char = false) {
     string password = "";
     for (int i = 0; i < password_length; i++) {

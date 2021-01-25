@@ -16,12 +16,12 @@ inline string process_words(string word) {
     return processed_word;
 }
 
-// generated a random number in given range
+// generates a random number in given range
 inline int get_random_number_in_range(int from, int to) {
     return rng() % (to - from + 1) + from;
 }
 
-// generated a random password with a given length
+// generates a random password with a given length
 string get_random_password(int password_lenght) {
     string random_password = "";
     for (int i = 0; i < password_lenght; i++) {
@@ -84,7 +84,7 @@ int get_first_character_index() {
     return -1;
 }
 
-//generated a more readable password
+//generates a more readable password
 string get_readable_password(int password_length, bool capitalize = false, bool special_char = false) {
     string password = "";
     for (int i = 0; i < password_length; i++) {

@@ -66,6 +66,7 @@ int get_current_char(int previous_index) {
     for (int next_char = 0; next_char < 26; next_char++) {
         if (num < cnt[previous_index][next_char]) return next_char;
         else num -= cnt[previous_index][next_char];
+        if (num == 0) return next_char;
     }
     assert(false);
     return -1;
@@ -79,6 +80,7 @@ int get_first_character_index() {
     for (int cur_char = 0; cur_char < 26; cur_char++) {
         if (num < first_character[cur_char]) return cur_char;
         else num -= first_character[cur_char];
+        if (num == 0) return cur_char;
     }
     assert(false);
     return -1;

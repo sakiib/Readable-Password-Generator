@@ -120,11 +120,11 @@ int main() {
 
     for (auto w: unique_words) words.push_back(w);
 
-    int password_length = 10;
+    int password_length = 15;
     cout << "just a random password: " << get_random_password(password_length) << "\n";
 
     calculate_count(words);
-
-    cout << "more readable password: " << get_readable_password(password_length, true, false) << "\n";
+    
+    cout << "A more readable password: " << get_readable_password(password_length, true, false) << "\n";
     return 0;
 }
